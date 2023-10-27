@@ -1,3 +1,4 @@
+pragma circom  2.1.6;
 include "../node_modules/circomlib/circuits/mimcsponge.circom"
 include "../node_modules/circomlib/circuits/comparators.circom";
 
@@ -14,7 +15,7 @@ include "../node_modules/circomlib/circuits/comparators.circom";
 */
 
 template DenySignature() {
-    signal private input secret;
+    signal input secret;
     signal input hash;
     signal input msg;
     signal input msgAttestation;
@@ -38,4 +39,4 @@ template DenySignature() {
     areMessagesEql.out === 0;
 }
 
-component main = DenySignature();
+component main { public [ hash, msg, msgAttestation] } = DenySignature();

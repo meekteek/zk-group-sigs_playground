@@ -1,4 +1,6 @@
-include "../node_modules/circomlib/circuits/mimcsponge.circom"
+pragma circom  2.1.6;
+include "../node_modules/circomlib/circuits/mimcsponge.circom";
+
 
 /*
   Inputs:
@@ -13,7 +15,7 @@ include "../node_modules/circomlib/circuits/mimcsponge.circom"
 */
 
 template RevealSigner() {
-    signal private input secret;
+    signal input secret;
     signal input hash;
     signal input msg;
     signal input msgAttestation;
@@ -33,4 +35,4 @@ template RevealSigner() {
     msgAttestation === mimcAttestation.outs[0];
 }
 
-component main = RevealSigner();
+component main {public [hash, msg, msgAttestation]} = RevealSigner();
